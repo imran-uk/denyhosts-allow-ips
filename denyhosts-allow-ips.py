@@ -42,7 +42,7 @@ GPG Key fingerprint = B323 477E F6AB 4181 9C65  F637 BC5F 7FCC 9CC9 CC7F
 This is "thankyou-ware" - send me a note of thanks if you have found this
 script useful - thanks!
 """
-__version__ = 0.7
+__version__ = 1.0
 
 import shutil
 import sys
@@ -58,6 +58,8 @@ def	process_hosts_deny(ip_list):
 	for line in file_lines:
 		if not process_line(line, ip_list):
 			tf.write(line)
+	wf.close()
+	tf.close()
 	shutil.move(tmp_filename, work_filename)
 	return
 
@@ -71,6 +73,8 @@ def	process_files(work_dir, work_files, ip_list):
 		for line in file_lines:
 			if not process_line(line, ip_list):
 				tf.write(line)
+		wf.close()
+		tf.close()
 		shutil.move(tmp_filename, work_filename)
 	return
 
