@@ -3,30 +3,30 @@
 """
 Allow IP addresses that have been blocked by DenyHosts.
 
-This script automates this process:
+This script automates much of this process:
 http://denyhosts.sourceforge.net/faq.html#3_19
 
 THIS SCRIPT WILL OVERWRITE AND CHANGE FILES!
 
 To be safe, backup /etc/hosts.deny and /var/lib/denyhosts beforehand!
 
-Examples:
+eg.
 tar -czvf /tmp/denyhosts.tar.gz /var/lib/denyhosts
 cp /etc/hosts.deny /etc/hosts.deny.bak
 
 Make sure the file of IPs is in dotted-quad format, newline delimited and 
 with no leading or trailing spaces.
 
-Run as root or with sudo. Assumes work-dir is /var/lib/denyhosts.
+Stop denyhosts first. Run as root or with sudo. Assumes work-dir is /var/lib/denyhosts.
 
 Allow 10.0.0.1: 
-./allow-ips 10.0.0.1
+./denyhosts-allow-ips.py 10.0.0.1
 
 Allow IPs in ips.txt and also remove them from /etc/hosts.deny:
-./allow-ips --hosts-deny --ips ips.txt
+./denyhosts-allow-ips.py --hosts-deny --ips ips.txt
 
 Allow IPs in ips.txt, remove from hosts-deny but work-dir not default:
-./allow-ips --work-dir /var/local/denyhosts --hosts-deny --ips ips.txt
+./denyhosts-allow-ips.py --work-dir /var/local/denyhosts --hosts-deny --ips ips.txt
 
 TODO 
 * An option to add the IP(s) to allowed-hosts
@@ -42,7 +42,7 @@ GPG Key fingerprint = B323 477E F6AB 4181 9C65  F637 BC5F 7FCC 9CC9 CC7F
 This is "thankyou-ware" - send me a note of thanks if you have found this
 script useful - thanks!
 """
-__version__ = 1.0
+__version__ = 1.01
 
 import shutil
 import sys
